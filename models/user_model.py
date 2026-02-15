@@ -6,6 +6,7 @@ from app import vuln, alive
 from models.books_model import Book
 from random import randrange
 from sqlalchemy.sql import text
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(db.Model):
@@ -21,8 +22,11 @@ class User(db.Model):
     def __init__(self, username, password, email, admin=False):
         self.username = username
         self.email = email
-        self.password = password
+        self.password = generate_password_hash(password)
         self.admin = admin
+
+    def verify_password(self, password):
+        return check_password_hash(self.password, password)
 
     def __repr__(self):
         return f'{{"username": "{self.username}", "email": "{self.email}"}}'
