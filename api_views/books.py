@@ -18,7 +18,7 @@ def add_new_book():
     request_data = request.get_json()
     try:
         jsonschema.validate(request_data, add_book_schema)
-    except:
+    except jsonschema.exceptions.ValidationError:
         return Response(error_message_helper("Please provide a proper JSON body."), 400, mimetype="application/json")
     resp = token_validator(request.headers.get('Authorization'))
     if "error" in resp:
