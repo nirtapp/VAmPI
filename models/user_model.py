@@ -90,6 +90,6 @@ class User(db.Model):
 
     @staticmethod
     def init_db_users():
-        User.register_user("name1", "pass1", "mail1@mail.com", False)
-        User.register_user("name2", "pass2", "mail2@mail.com", False)
-        User.register_user("admin", "pass1", "admin@mail.com", True)
+        User.register_user("name1", "K8s!Demo#Usr1@2024", "mail1@mail.com", False)
+        User.register_user("name2", "Vamp1$Test&Pw2!", "mail2@mail.com", False)
+        User.register_user("admin", "Adm!n#SecR3t@VAmPI", "admin@mail.com", True)
