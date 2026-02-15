@@ -23,6 +23,12 @@ def get_all_users():
 
 
 def debug():
+    resp = token_validator(request.headers.get('Authorization'))
+    if "error" in resp:
+        return Response(error_message_helper(resp), 401, mimetype="application/json")
+    user = User.query.filter_by(username=resp['sub']).first()
+    if not user or not user.admin:
+        return Response(error_message_helper("Only Admins may access debug info!"), 401, mimetype="application/json")
     return_value = jsonify({'users': User.get_all_users_debug()})
     return return_value
 
