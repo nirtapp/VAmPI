@@ -12,9 +12,9 @@ from werkzeug.security import generate_password_hash
 
 def error_message_helper(msg):
     if isinstance(msg, dict):
-        return '{ "status": "fail", "message": "' + msg['error'] + '"}'
+        return json.dumps({"status": "fail", "message": msg['error']})
     else:
-        return '{ "status": "fail", "message": "' + msg + '"}'
+        return json.dumps({"status": "fail", "message": msg})
 
 
 def get_all_users():
