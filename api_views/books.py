@@ -6,7 +6,6 @@ from api_views.json_schemas import *
 from flask import jsonify, Response, request, json
 from models.user_model import User
 from models.books_model import Book
-from app import vuln
 
 
 def get_all_books():
