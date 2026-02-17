@@ -5,7 +5,6 @@ from config import db, vuln_app
 from app import vuln, alive
 from models.books_model import Book
 from random import randrange
-from sqlalchemy.sql import text
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
