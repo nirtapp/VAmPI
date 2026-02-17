@@ -12,9 +12,9 @@ from werkzeug.security import generate_password_hash
 
 def error_message_helper(msg):
     if isinstance(msg, dict):
-        return '{ "status": "fail", "message": "' + msg['error'] + '"}'
+        return json.dumps({"status": "fail", "message": msg['error']})
     else:
-        return '{ "status": "fail", "message": "' + msg + '"}'
+        return json.dumps({"status": "fail", "message": msg})
 
 
 def get_all_users():
@@ -79,7 +79,7 @@ def register_user():
         except jsonschema.exceptions.ValidationError as exc:
             return Response(error_message_helper(exc.message), 400, mimetype="application/json")
     else:
-        return Response(error_message_helper("User already exists. Please Log in."), 200, mimetype="application/json")
+        return Response(error_message_helper("Registration failed. Please try again or log in."), 200, mimetype="application/json")
 
 
 def login_user():

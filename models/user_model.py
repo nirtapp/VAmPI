@@ -5,7 +5,6 @@ from config import db, vuln_app
 from app import vuln, alive
 from models.books_model import Book
 from random import randrange
-from sqlalchemy.sql import text
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -60,7 +59,7 @@ class User(db.Model):
         return {'username': self.username, 'email': self.email}
 
     def json_debug(self):
-        return {'username': self.username, 'password': self.password, 'email': self.email, 'admin': self.admin}
+        return {'username': self.username, 'email': self.email, 'admin': self.admin}
 
     @staticmethod
     def get_all_users():
